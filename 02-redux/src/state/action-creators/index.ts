@@ -1,9 +1,11 @@
 import axios from 'axios'
+import { Dispatch } from 'redux'
 import { ActionType } from '../action-types'
 import { Action } from '../actions'
 
 export const searchRepositories = (term: string) => {
-  return async (dispatch: any) => {
+  // tell TS to use Action for all dispatches
+  return async (dispatch: Dispatch<Action>) => {
     // emit the search event
     dispatch({
       type: ActionType.SEARCH_REPOSITORIES,
@@ -24,6 +26,7 @@ export const searchRepositories = (term: string) => {
         return result.package.name
       })
 
+      // emit success event
       dispatch({
         type: ActionType.SEARCH_REPOSITORIES_SUCCESS,
         payload: names,
