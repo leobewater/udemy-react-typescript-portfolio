@@ -4,7 +4,12 @@ interface RepositoriesState {
   data: string[]
 }
 
-const reducer = (state: RepositoriesState, action: any): RepositoriesState => {
+interface Action {
+  type: string
+  payload?: any // optional paypload with any type
+}
+
+const reducer = (state: RepositoriesState, action: Action): RepositoriesState => {
   switch (action.type) {
     case 'search_repositories':
       return { loading: true, error: null, data: [] }
@@ -16,4 +21,5 @@ const reducer = (state: RepositoriesState, action: any): RepositoriesState => {
       return state
   }
 }
+
 export default reducer
