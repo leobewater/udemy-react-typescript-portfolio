@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useTypedSelector } from '../hooks/useTypedSelector'
 import { useActions } from '../hooks/useActions'
 
 const RepositoriesList: React.FC = () => {
@@ -7,7 +7,7 @@ const RepositoriesList: React.FC = () => {
     const { searchRepositories } = useActions()
 
     // get repositories from state
-    const { data, error, loading } = useSelector((state) => state.repositories)
+    const { data, error, loading } = useTypedSelector((state) => state.repositories)
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -21,6 +21,11 @@ const RepositoriesList: React.FC = () => {
             <input type="text" value={term} onChange={e => setTerm(e.target.value)} />
             <button>Search</button>
         </form>
+        {error && <h3>{error}</h3>}
+        {loading && <h3>Loading...</h3>}
+        
+        {!error && !loading && data}
+
     </div>
 }
 export default RepositoriesList
