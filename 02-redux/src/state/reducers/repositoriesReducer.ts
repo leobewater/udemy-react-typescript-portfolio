@@ -10,17 +10,23 @@ interface RepositoriesState {
 //   payload?: any // optional paypload with any type
 // }
 
+enum ActionType {
+  SEARCH_REPOSITORIES = 'search_repositories',
+  SEARCH_REPOSITORIES_SUCCESS = 'search_repositories_success',
+  SEARCH_REPOSITORIES_ERROR = 'search_repositories_error',
+}
+
 interface SearchRepositoriesAction {
-  type: 'search_repositories' // exact match
+  type: ActionType.SEARCH_REPOSITORIES
 }
 
 interface SearchRepositoriesSuccessAction {
-  type: 'search_repositories_success'
+  type: ActionType.SEARCH_REPOSITORIES_SUCCESS
   payload: string[]
 }
 
 interface SearchRepositoriesErrorAction {
-  type: 'search_repositories_error'
+  type: ActionType.SEARCH_REPOSITORIES_ERROR
   payload: string
 }
 
@@ -29,11 +35,7 @@ type Action =
   | SearchRepositoriesSuccessAction
   | SearchRepositoriesErrorAction
 
-enum ActionType {
-  SEARCH_REPOSITORIES = 'search_repositories',
-  SEARCH_REPOSITORIES_SUCCESS = 'search_repositories_success',
-  SEARCH_REPOSITORIES_ERROR = 'search_repositories_error',
-}
+
 
 const reducer = (
   state: RepositoriesState,
