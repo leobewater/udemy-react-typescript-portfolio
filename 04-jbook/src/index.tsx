@@ -1,7 +1,19 @@
 import ReactDOM from 'react-dom'
+import { useState } from 'react'
 
 const App = () => {
-    return <h1>Hi There</h1>
+    const [input, setInput] = useState('')
+    const [code, setCode] = useState('')
+
+    return <div>
+        <textarea onChange={e => setInput(e.target.value)}></textarea>
+        <div>
+            <button>Submit</button>
+        </div>
+        <pre>
+            {code}
+        </pre>
+    </div>
 }
 
 ReactDOM.render(
