@@ -19,13 +19,20 @@ const App = () => {
         startService()
     }, [])
 
-    const onClick = () => {
-        // use esBuild to transpile the entered code and display on screen
+    const onClick = async () => {
+        // use esBuild to transpile the JS code from input and display on screen
         if (!ref.current) {
             return
         }
 
-        console.log(ref.current)
+        // console.log(ref.current)
+        const result = await ref.current.transform(input, {
+            loader: 'jsx',
+            target: 'es2015',
+        })
+
+        //console.log(result)
+        setCode(result.code)
     }
 
     return <div>
