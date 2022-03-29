@@ -5,10 +5,15 @@ const App = () => {
     const [input, setInput] = useState('')
     const [code, setCode] = useState('')
 
+    const onClick = () => {
+        // use esBuild to transpile the entered code and display on screen
+        console.log(input)
+    }
+
     return <div>
-        <textarea onChange={e => setInput(e.target.value)}></textarea>
+        <textarea value={input} onChange={e => setInput(e.target.value)}></textarea>
         <div>
-            <button>Submit</button>
+            <button onClick={onClick}>Submit</button>
         </div>
         <pre>
             {code}
